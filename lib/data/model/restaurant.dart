@@ -1,4 +1,15 @@
+class RestaurantResult {
+  RestaurantResult({
+    required this.restaurants
+  });
 
+  List<Restaurant> restaurants;
+
+  factory RestaurantResult.fromJson(Map<dynamic, dynamic> json) => RestaurantResult(
+    restaurants: List<Restaurant>.from((json['restaurants'] as List)
+      .map((e) => Restaurant.fromJson(e))),
+  );
+}
 
 
 class Restaurant {

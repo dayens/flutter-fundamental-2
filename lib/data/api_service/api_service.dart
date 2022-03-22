@@ -7,10 +7,10 @@ class ApiService {
   static final String _baseUrl = 'https://restaurant-api.dicoding.dev/';
   static final String _list = 'list';
 
-  Future<Restaurant> listRestaurant() async {
+  Future<RestaurantResult> listRestaurant() async {
     final response = await http.get(Uri.parse(_baseUrl + _list));
     if (response.statusCode == 200) {
-      return Restaurant.fromJson(json.decode(response.body));
+      return RestaurantResult.fromJson(json.decode(response.body));
     } else {
       throw Exception('Failed load data');
     }
