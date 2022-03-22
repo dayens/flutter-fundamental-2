@@ -15,4 +15,6 @@ class ApiService {
       throw Exception('Failed load data');
     }
   }
+
+
 }
