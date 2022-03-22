@@ -3,6 +3,7 @@ import 'package:flutter_fundamental_2/data/model/restaurant.dart';
 
 class CardRestaurant extends StatelessWidget {
   final Restaurant restaurant;
+  static const _baseUrlImage = 'https://restaurant-api.dicoding.dev/images/small/';
 
   CardRestaurant({required this.restaurant});
 
@@ -18,7 +19,7 @@ class CardRestaurant extends StatelessWidget {
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: Image.network('https://restaurant-api.dicoding.dev/images/small/' + restaurant.pictureId),
+              child: Image.network(_baseUrlImage + restaurant.pictureId),
             ),
             Expanded(
               flex: 2,

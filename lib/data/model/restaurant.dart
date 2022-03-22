@@ -11,7 +11,6 @@ class RestaurantResult {
   );
 }
 
-
 class Restaurant {
   Restaurant({
     required this.id,
@@ -47,3 +46,4 @@ class Restaurant {
     "rating": rating,
   };
 }
+
