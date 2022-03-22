@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fundamental_2/data/api_service/api_service.dart';
+import 'package:flutter_fundamental_2/data/model/detail_restaurant.dart';
 
 class DetailScreen extends StatefulWidget {
+
+
+
   @override
   State<DetailScreen> createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  late Future<DetailRestaurant> _restaurant;
+  late DetailRestaurant detailRestaurant;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _restaurant = ApiService().detailRestaurant(detailRestaurant.id);
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
