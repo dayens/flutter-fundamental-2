@@ -22,11 +22,10 @@ class ApiService {
     }
   }
 
-  Future<DetailRestaurant> detailRestaurant(id) async {
-    String? id;
+  Future<DetailResult> detailRestaurant(String id) async {
     final response = await http.get(Uri.parse(_baseUrl + _detail + '$id'));
     if (response.statusCode == 200) {
-      return DetailRestaurant.fromJson(json.decode(response.body));
+      return DetailResult.fromJson(json.decode(response.body));
     } else {
       throw Exception(_throw);
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_2/data/model/restaurant.dart';
+import 'package:flutter_fundamental_2/ui/detail_screen.dart';
 
 class CardRestaurant extends StatelessWidget {
   final Restaurant restaurant;
@@ -11,7 +12,8 @@ class CardRestaurant extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-
+        Navigator.pushNamed(context, DetailScreen.routeName,
+        arguments: restaurant);
       },
       child: Card(
         child: Row(

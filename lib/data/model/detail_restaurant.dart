@@ -1,3 +1,15 @@
+class DetailResult {
+  DetailResult({
+    required this.restaurants
+  });
+
+  final DetailRestaurant restaurants;
+
+  factory DetailResult.fromJson(Map<String, dynamic> json) => DetailResult(
+    restaurants: DetailRestaurant.fromJson(json["restaurant"]),
+  );
+}
+
 class DetailRestaurant {
   DetailRestaurant({
     required this.id,
