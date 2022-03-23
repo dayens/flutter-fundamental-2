@@ -8,6 +8,7 @@ class ApiService {
   static final String _baseUrl = 'https://restaurant-api.dicoding.dev/';
   static final String _list = 'list';
   static final String _detail = 'detail/';
+  static final String _search = 'search?q=';
   static final String _throw = 'Failed load data';
 
   Future<RestaurantResult> listRestaurant() async {

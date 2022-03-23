@@ -28,6 +28,7 @@ class Restaurant {
   String city;
   String rating;
 
+
   factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
     id: json["id"],
     name: json["name"],
