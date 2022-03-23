@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamental_2/ui/restaurant_list_page.dart';
+import 'package:flutter_fundamental_2/widgets/restaurant_list_page.dart';
 
 class HomeScreen extends StatelessWidget{
   static const routeName = '/restaurant_list';

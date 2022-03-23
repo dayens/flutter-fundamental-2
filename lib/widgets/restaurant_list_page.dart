@@ -3,7 +3,7 @@ import 'package:flutter_fundamental_2/data/api_service/api_service.dart';
 import 'package:flutter_fundamental_2/data/model/restaurant.dart';
 import 'package:flutter_fundamental_2/widgets/platform_widget.dart';
 
-import '../widgets/card_restaurant.dart';
+import 'card_restaurant.dart';
 
 class RestaurantListPage extends StatefulWidget {
 

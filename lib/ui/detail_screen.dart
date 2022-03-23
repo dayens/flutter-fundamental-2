@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_2/data/api_service/api_service.dart';
 import 'package:flutter_fundamental_2/data/model/detail_restaurant.dart';
 import 'package:flutter_fundamental_2/data/model/restaurant.dart';
+import 'package:flutter_fundamental_2/widgets/failed_load_data.dart';
 import 'package:flutter_fundamental_2/widgets/platform_widget.dart';
 
 import '../widgets/detail_pages.dart';
@@ -48,12 +49,8 @@ class _DetailScreenState extends State<DetailScreen> {
             return Scaffold(
               body: DetailPage(restaurant: restaurant!),
             );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text(snapshot.error.toString()),
-            );
           } else {
-            return Text('');
+            return FailedLoadData();
           }
         }
       },
