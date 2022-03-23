@@ -4,7 +4,7 @@ import 'package:flutter_fundamental_2/ui/detail_screen.dart';
 
 class CardRestaurant extends StatelessWidget {
   final Restaurant restaurant;
-  static const _baseUrlImage = 'https://restaurant-api.dicoding.dev/images/small/';
+  static final String _baseUrlImage = 'https://restaurant-api.dicoding.dev/images/small/';
 
   CardRestaurant({required this.restaurant});
 

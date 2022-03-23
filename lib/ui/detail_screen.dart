@@ -1,59 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_2/data/api_service/api_service.dart';
-import 'package:flutter_fundamental_2/data/model/detail_restaurant.dart';
 import 'package:flutter_fundamental_2/data/model/restaurant.dart';
-import 'package:flutter_fundamental_2/widgets/failed_load_data.dart';
+import 'package:flutter_fundamental_2/provider/detail_provider.dart';
+import 'package:flutter_fundamental_2/provider/resto_provider.dart';
 import 'package:flutter_fundamental_2/widgets/platform_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/detail_pages.dart';
 
-class DetailScreen extends StatefulWidget {
-
+class DetailScreen extends StatelessWidget {
   static const routeName = '/detail_screen';
 
+  DetailScreen ({required this.restaurant});
   final Restaurant restaurant;
 
-  DetailScreen ({required this.restaurant});
-
-
-
-
-  @override
-  State<DetailScreen> createState() => _DetailScreenState(idRes: restaurant);
-}
-
-class _DetailScreenState extends State<DetailScreen> {
-  late Future<DetailResult> _restaurant;
-  Restaurant idRes;
-
-  _DetailScreenState ({required this.idRes});
-
-  @override
-  void initState() {
-    super.initState();
-    _restaurant = ApiService().detailRestaurant(idRes.id);
-  }
-
   Widget _buildList (BuildContext context) {
-    return FutureBuilder(
-      future: _restaurant,
-      builder: (context, AsyncSnapshot<DetailResult> snapshot) {
-        var state = snapshot.connectionState;
-        if (state != ConnectionState.done) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
-          if (snapshot.hasData) {
-            var restaurant = snapshot.data?.restaurants;
+    return ChangeNotifierProvider<DetailProvider>(
+      create: (_) => DetailProvider(apiService: ApiService(), resto: restaurant.id),
+      child: Consumer<DetailProvider>(
+        builder: (context, data, _) {
+          if (data.state == DetailResultState.Loading) {
+            return Center(child: CircularProgressIndicator(),);
+          } else if (data.state == DetailResultState.HasData) {
             return Scaffold(
-              body: DetailPage(restaurant: restaurant!),
+              body: DetailPage(restaurant: data.detailResult.restaurants),
             );
+          } else if (data.state == ResultState.NoData) {
+            return Center(child: Text(data.message));
+          } else if (data.state == ResultState.Error) {
+            return Center(child: Text(data.message));
           } else {
-            return FailedLoadData();
+            return Center(child: Text(''));
           }
         }
-      },
+      ),
     );
   }
 
