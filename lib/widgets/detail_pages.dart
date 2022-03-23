@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_2/data/model/detail_restaurant.dart';
 
 class DetailPage extends StatelessWidget {
+  static final String _urlPicture = 'https://restaurant-api.dicoding.dev/images/large/';
 
   final DetailRestaurant restaurant;
 
@@ -18,13 +19,10 @@ class DetailPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              /*
               Container(
-                margin: EdgeInsets.only(top: 32, left: 8, right: 8),
-                child: Image.network(restaurant.pictureId, width: 200, height: 200,),
+                margin: EdgeInsets.only(top: 16, left: 1, right: 1),
+                child: Image.network(_urlPicture + restaurant.pictureId,),
               ),
-
-               */
               Container(
                 margin: EdgeInsets.only(top: 32, left: 8, right: 8),
                 decoration: BoxDecoration(
@@ -79,7 +77,6 @@ class DetailPage extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /*
                   Expanded(
                     child: Container(
                       margin: EdgeInsets.all(8.0),
@@ -97,7 +94,7 @@ class DetailPage extends StatelessWidget {
                           ),
                           Column(
                             children: restaurant.menus.foods.map((e) =>
-                                Text('- '+e.name!)).toList(),
+                                Text('- '+e.name)).toList(),
                           )
                         ],
                       ),
@@ -120,14 +117,12 @@ class DetailPage extends StatelessWidget {
                             ),
                             Column(
                               children: restaurant.menus.drinks.map((e) =>
-                                  Text('- '+e.name!)).toList(),
+                                  Text('- '+e.name)).toList(),
                             )
                           ]
                       ),
                     ),
                   )
-
-                   */
                 ],
               )
             ],

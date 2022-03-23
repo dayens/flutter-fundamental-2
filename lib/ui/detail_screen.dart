@@ -18,21 +18,19 @@ class DetailScreen extends StatefulWidget {
 
 
   @override
-  State<DetailScreen> createState() => _DetailScreenState(restaurant2: restaurant);
+  State<DetailScreen> createState() => _DetailScreenState(idRes: restaurant);
 }
 
 class _DetailScreenState extends State<DetailScreen> {
   late Future<DetailResult> _restaurant;
+  Restaurant idRes;
 
-  Restaurant restaurant2;
-  //late DetailRestaurant detailRestaurant;
-
-  _DetailScreenState ({required this.restaurant2});
+  _DetailScreenState ({required this.idRes});
 
   @override
   void initState() {
     super.initState();
-    _restaurant = ApiService().detailRestaurant(restaurant2.id);
+    _restaurant = ApiService().detailRestaurant(idRes.id);
   }
 
   Widget _buildList (BuildContext context) {
@@ -46,21 +44,10 @@ class _DetailScreenState extends State<DetailScreen> {
           );
         } else {
           if (snapshot.hasData) {
-            //DetailRestaurant dRes = restaurant2 as DetailRestaurant;
-            //return DetailPage(restaurant: dRes);
             var restaurant = snapshot.data?.restaurants;
             return Scaffold(
               body: DetailPage(restaurant: restaurant!),
-              //shrinkWrap: true,
-              //itemCount: snapshot.data?.restaurants.length,
-              //itemBuilder: (context, index) {
-
-
-              //},
-              
-             
             );
-
           } else if (snapshot.hasError) {
             return Center(
               child: Text(snapshot.error.toString()),
