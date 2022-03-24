@@ -1,41 +1,48 @@
-// import 'package:flutter/material.dart';
-// import '../data/api_service/api_service.dart';
-//
-// enum SearchResultState { Loading , NoData, HasData, Error}
-//
-// class SearchProvider extends ChangeNotifier {
-//   final ApiService apiService;
-//
-//   SearchProvider ({required this.apiService}) {
-//     _fetchDetailRestaurant();
-//   }
-//
-//   late SearchResult _searchResult;
-//   late SearchResultState _state;
-//   String _message = '';
-//
-//   SearchResult get searchResult => _searchResult;
-//   SearchResultState get state => _state;
-//   String get message => _message;
-//
-//   Future<dynamic> _fetchSearch() async {
-//     try {
-//       _state = SearchResultState.Loading;
-//       notifyListeners();
-//       final restaurant = await apiService.detailRestaurant();
-//       if (restaurant.restaurants == SearchResultState.NoData) {
-//         _state = SearchResultState.NoData;
-//         notifyListeners();
-//         return _message = 'Empty Data';
-//       } else {
-//         _state = SearchResultState.HasData;
-//         notifyListeners();
-//         return _searchResult = restaurant;
-//       }
-//     } catch (e) {
-//       _state = SearchResultState.Error;
-//       notifyListeners();
-//       return _message = 'Error --> $e';
-//     }
-//   }
-// }
+import '../data/api_service/api_service.dart';
+import '../data/model/search.dart';
+import 'package:flutter/material.dart';
+
+enum ResultState { Loading, NoData, HasData, Error }
+
+class SearchRestaurantProvider extends ChangeNotifier {
+  final ApiService apiService;
+  // final String query;
+
+  SearchRestaurantProvider({required this.apiService}) {
+    fetchQueryRestaurant(query);
+  }
+
+  RestaurantSearch? _restaurantList;
+  ResultState? _state;
+  String _message = '';
+  String _query = '';
+
+  String get message => _message;
+  String get query => _query;
+  RestaurantSearch? get result => _restaurantList;
+  ResultState? get state => _state;
+
+  Future<dynamic> fetchQueryRestaurant(String query) async {
+    try {
+      if (query.isNotEmpty) {
+        _state = ResultState.Loading;
+        _query = query;
+        notifyListeners();
+        final restaurantList = await apiService.searchRestaurant(query);
+        if (restaurantList.restaurants.isEmpty) {
+          _state = ResultState.NoData;
+          notifyListeners();
+          return _message = 'Empty Data';
+        } else {
+          _state = ResultState.HasData;
+          notifyListeners();
+          return _restaurantList = restaurantList;
+        }
+      }
+    } catch (e) {
+      _state = ResultState.Error;
+      notifyListeners();
+      return _message = 'Error --> $e';
+    }
+  }
+}

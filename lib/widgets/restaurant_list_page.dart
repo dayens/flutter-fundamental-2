@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_2/provider/resto_provider.dart';
-import 'package:flutter_fundamental_2/widgets/floating_action.dart';
 import 'package:flutter_fundamental_2/widgets/platform_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +39,6 @@ class RestaurantListPage extends StatelessWidget {
                   return CardRestaurant(restaurant: restaurant);
                 },
               ),
-              floatingActionButton: FloatingAction(restaurant: state.result.restaurants,),
             );
           } else if (state.state == ResultState.NoData) {
             return Center(

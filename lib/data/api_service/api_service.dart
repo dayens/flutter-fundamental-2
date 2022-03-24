@@ -4,6 +4,8 @@ import 'package:flutter_fundamental_2/data/model/detail_restaurant.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_fundamental_2/data/model/restaurant.dart';
 
+import '../model/search.dart';
+
 class ApiService {
   static final String _baseUrl = 'https://restaurant-api.dicoding.dev/';
   static final String _list = 'list';
@@ -26,6 +28,16 @@ class ApiService {
       return DetailResult.fromJson(json.decode(response.body));
     } else {
       throw Exception(_throw);
+    }
+  }
+
+  Future<RestaurantSearch> searchRestaurant(String query) async {
+    final response =
+    await http.get(Uri.parse(_baseUrl + _search + query));
+    if (response.statusCode == 200) {
+      return RestaurantSearch.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load search result');
     }
   }
 }
