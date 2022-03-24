@@ -5,7 +5,6 @@ import 'package:flutter_fundamental_2/provider/detail_provider.dart';
 import 'package:flutter_fundamental_2/provider/resto_provider.dart';
 import 'package:flutter_fundamental_2/widgets/platform_widget.dart';
 import 'package:provider/provider.dart';
-
 import '../widgets/detail_pages.dart';
 
 class DetailScreen extends StatelessWidget {

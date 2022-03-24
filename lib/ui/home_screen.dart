@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget{
           )
         ],
       ),
-      body: RestaurantListPage()
+      body: RestaurantListPage(),
     );
   }
 }

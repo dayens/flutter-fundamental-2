@@ -7,9 +7,8 @@ class RestaurantSearch {
 
   List<Restaurant> restaurants;
 
-  factory RestaurantSearch.fromJson(Map<String, dynamic> json) =>
-      RestaurantSearch(
-        restaurants: List<Restaurant>.from(
-            json["restaurants"].map((x) => Restaurant.fromJson(x))),
-      );
+  factory RestaurantSearch.fromJson(Map<String, dynamic> json) => RestaurantSearch(
+    restaurants: List<Restaurant>.from(
+        json["restaurants"].map((x) => Restaurant.fromJson(x))),
+  );
 }

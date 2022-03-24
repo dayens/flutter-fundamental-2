@@ -6,7 +6,6 @@ enum ResultState { Loading, NoData, HasData, Error }
 
 class SearchRestaurantProvider extends ChangeNotifier {
   final ApiService apiService;
-  // final String query;
 
   SearchRestaurantProvider({required this.apiService}) {
     fetchQueryRestaurant(query);

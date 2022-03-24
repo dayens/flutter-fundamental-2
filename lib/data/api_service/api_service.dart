@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter_fundamental_2/data/model/detail_restaurant.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_fundamental_2/data/model/restaurant.dart';
