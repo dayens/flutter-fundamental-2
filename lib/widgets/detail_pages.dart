@@ -11,11 +11,7 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Detail Restaurant'),
-        ),
-        body: SingleChildScrollView(
+    return SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -127,7 +123,6 @@ class DetailPage extends StatelessWidget {
               )
             ],
           ),
-        ),
     );
   }
 }

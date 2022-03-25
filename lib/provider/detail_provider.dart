@@ -37,7 +37,7 @@ class DetailProvider extends ChangeNotifier {
     } catch (e) {
       _state = DetailResultState.Error;
       notifyListeners();
-      return _message = 'Error --> $e';
+      return _message = 'Error --> Failed Load Data';
     }
   }
 }

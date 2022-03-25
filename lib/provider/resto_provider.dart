@@ -36,7 +36,7 @@ class RestoProvider extends ChangeNotifier {
     } catch (e) {
       _state = ResultState.Error;
       notifyListeners();
-      return _message = 'Error --> $e';
+      return _message = 'Error --> Failed Load Data';
     }
   }
 }
