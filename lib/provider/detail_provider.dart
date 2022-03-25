@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_2/data/api_service/api_service.dart';
 import 'package:flutter_fundamental_2/data/model/detail_restaurant.dart';
-
-enum DetailResultState { Loading , NoData, HasData, Error}
+import '../utils/result_state.dart';
 
 class DetailProvider extends ChangeNotifier {
   final ApiService apiService;
@@ -13,31 +12,31 @@ class DetailProvider extends ChangeNotifier {
   }
 
   late DetailResult _detailResult;
-  late DetailResultState _state;
+  late ResultState _state;
   String _message = '';
 
   DetailResult get detailResult => _detailResult;
-  DetailResultState get state => _state;
+  ResultState get state => _state;
   String get message => _message;
 
   Future<dynamic> _fetchDetailRestaurant() async {
     try {
-      _state = DetailResultState.Loading;
+      _state = ResultState.loading;
       notifyListeners();
       final restaurant = await apiService.detailRestaurant(resto);
-      if (restaurant.restaurants == DetailResultState.NoData) {
-        _state = DetailResultState.NoData;
+      if (restaurant.restaurants == ResultState.noData) {
+        _state = ResultState.noData;
         notifyListeners();
         return _message = 'Empty Data';
       } else {
-        _state = DetailResultState.HasData;
+        _state = ResultState.hasData;
         notifyListeners();
         return _detailResult = restaurant;
       }
     } catch (e) {
-      _state = DetailResultState.Error;
+      _state = ResultState.error;
       notifyListeners();
-      return _message = 'Error --> Failed Load Data';
+      return _message = 'Error --> Failed Load Data, please check your internet connection';
     }
   }
 }

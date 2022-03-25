@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fundamental_2/provider/resto_provider.dart';
 import 'package:flutter_fundamental_2/widgets/platform_widget.dart';
 import 'package:provider/provider.dart';
-
+import '../utils/result_state.dart';
 import 'card_restaurant.dart';
 
 class RestaurantListPage extends StatelessWidget {
@@ -24,12 +24,12 @@ class RestaurantListPage extends StatelessWidget {
   Widget _buildList (BuildContext context) {
     return Consumer<RestoProvider>(
       builder: (context, state, _) {
-        if (state.state == ResultState.Loading) {
+        if (state.state == ResultState.loading) {
           return Center(
             child: CircularProgressIndicator(),
           );
         } else {
-          if (state.state == ResultState.HasData) {
+          if (state.state == ResultState.hasData) {
             return Scaffold(
               body: ListView.builder(
                 shrinkWrap: true,
@@ -40,11 +40,11 @@ class RestaurantListPage extends StatelessWidget {
                 },
               ),
             );
-          } else if (state.state == ResultState.NoData) {
+          } else if (state.state == ResultState.noData) {
             return Center(
               child: Text(state.message),
             );
-          } else if (state.state == ResultState.Error){
+          } else if (state.state == ResultState.error){
             return Center(
               child: Text(state.message),
             );

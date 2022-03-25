@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../provider/searchProvider.dart';
+import '../utils/result_state.dart';
 import '../widgets/card_restaurant.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -27,9 +28,9 @@ class _SearchScreenState extends State<SearchScreen> {
             Expanded(
               child: Consumer<SearchRestaurantProvider>(
                   builder: (context, state, _) {
-                    if (state.state == ResultState.Loading) {
+                    if (state.state == ResultState.loading) {
                       return const Center(child: CircularProgressIndicator());
-                    } else if (state.state == ResultState.HasData) {
+                    } else if (state.state == ResultState.hasData) {
                       return ListView.builder(
                           shrinkWrap: true,
                           itemCount: state.result!.restaurants.length,
@@ -37,9 +38,9 @@ class _SearchScreenState extends State<SearchScreen> {
                             var restaurant = state.result!.restaurants[index];
                             return CardRestaurant(restaurant: restaurant);
                           });
-                    } else if (state.state == ResultState.NoData) {
+                    } else if (state.state == ResultState.noData) {
                       return Center(child: Text(state.message));
-                    } else if (state.state == ResultState.Error) {
+                    } else if (state.state == ResultState.error) {
                       return Center(child: Text(state.message));
                     } else {
                       return const Center(child: Text(''));

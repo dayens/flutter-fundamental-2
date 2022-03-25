@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_fundamental_2/data/model/detail_restaurant.dart';
 import 'package:flutter_fundamental_2/data/model/restaurant.dart';
 import 'package:flutter_fundamental_2/provider/resto_provider.dart';
 import 'package:flutter_fundamental_2/provider/searchProvider.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_fundamental_2/ui/detail_screen.dart';
 import 'package:flutter_fundamental_2/ui/home_screen.dart';
 import 'package:flutter_fundamental_2/ui/search_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'data/api_service/api_service.dart';
 
 void main() {

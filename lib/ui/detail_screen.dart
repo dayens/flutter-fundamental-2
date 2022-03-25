@@ -4,6 +4,7 @@ import 'package:flutter_fundamental_2/data/model/restaurant.dart';
 import 'package:flutter_fundamental_2/provider/detail_provider.dart';
 import 'package:flutter_fundamental_2/widgets/platform_widget.dart';
 import 'package:provider/provider.dart';
+import '../utils/result_state.dart';
 import '../widgets/detail_pages.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -21,15 +22,15 @@ class DetailScreen extends StatelessWidget {
         ),
         body: Consumer<DetailProvider>(
           builder: (context, data, _) {
-            if (data.state == DetailResultState.Loading) {
+            if (data.state == ResultState.loading) {
               return Center(child: CircularProgressIndicator(),);
-            } else if (data.state == DetailResultState.HasData) {
+            } else if (data.state == ResultState.hasData) {
               return Scaffold(
                 body: DetailPage(restaurant: data.detailResult.restaurants),
               );
-            } else if (data.state == DetailResultState.NoData) {
+            } else if (data.state == ResultState.noData) {
               return Center(child: Text(data.message));
-            } else if (data.state == DetailResultState.Error) {
+            } else if (data.state == ResultState.error) {
               return Center(child: Text(data.message));
             } else {
               return Center(child: Text(''));
